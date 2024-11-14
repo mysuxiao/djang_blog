@@ -1,0 +1,67 @@
+{% load static %}
+{% load blog_tags %}
+{% get_site_configs as SITE_CONFIGS %}
+
+<aside class="l_side">
+
+    <!-- 侧边栏用户插件 -->
+    <section class="author">
+        <div class="content pure">
+            <div class="avatar"><img class="avatar" src="{% static 'images/4dp8xm.jpg' %}"></div>
+            <div class="text">
+                <p>弃此残躯换清风，卷席苍穹复光年</p>
+            </div>
+            <div class="social-wrapper">
+                <a href="mailto:{{ SITE_CONFIGS.email }}" class="social flat-btn waves-effect waves-button" target="_blank" rel="external"><i class="social fas fa-envelope" aria-hidden="true"></i></a>
+                <a href="{{ SITE_CONFIGS.github }}" class="social flat-btn waves-effect waves-button" target="_blank" rel="external nofollow noopener noreferrer"><i class="social fab fa-github" aria-hidden="true"></i></a>
+                <a href="{{ SITE_CONFIGS.weibo }}" class="social flat-btn waves-effect waves-button" target="_blank" rel="external nofollow noopener noreferrer"><i class="social fab fa-weibo" aria-hidden="true"></i></a>
+                <a href="{{ SITE_CONFIGS.music }}" class="social flat-btn waves-effect waves-button" target="_blank" rel="external nofollow noopener noreferrer"><i class="social fas fa-headphones-alt" aria-hidden="true"></i></a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- 文章目录 -->
+    <section class="toc-wrapper">
+        <header class="pure toc-show-hide">
+            <div><i id="toc-icon" class="fas fa-caret-down fa-fw" aria-hidden="true"></i>文章目录</div>
+        </header>
+        <div class="content pure" id="toc-content">
+            <ol class="toc"></ol>
+        </div>
+    </section>
+
+
+
+    <!-- 侧边栏热门标签插件 -->
+    <section class="tagcloud">
+        <header class="pure"><div><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;热门标签</div></header>
+        <div class="content pure">
+            {% get_tags as tags_list %}
+            {% for tag in tags_list.tags %}
+            <a href="{% url 'blog:tags' tag.name %}" style="" title="{{ tag.num_posts }}个话题">{{ tag.name }}({{ tag.num_posts }})</a>
+            {% empty %}
+                <a></a>
+            {% endfor %}
+        </div>
+    </section>
+
+
+    <!-- 侧边栏音乐插件 -->
+    {% get_music as music %}
+    {% if music %}
+    <section class="music">
+        <header class="pure">
+            <div><i class="fas fa-compact-disc fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;最近在听</div>
+            <a class="rightBtn" target="_blank" rel="external nofollow noopener noreferrer" href="{{ music.home_url }}" title="{{ music.home_url }}"><i class="far fa-heart fa-fw"></i></a>
+        </header>
+        <div class="content pure">
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.7.0/dist/APlayer.min.css">
+            <div class="aplayer" {% if music.autoplay %}data-autoplay="true"{% endif %} data-theme="#1BCDFC" data-mode="{{ music.mode }}" data-server="{{ music.server }}" data-type="{{ music.type }}" data-id="{{ music.play_id }}" data-volume="0.7"></div>
+            <script src="https://cdn.jsdelivr.net/npm/aplayer@1.7.0/dist/APlayer.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/meting@1.1.0/dist/Meting.min.js"></script>
+        </div>
+    </section>
+    {% endif %}
+</aside>
+<script src="{% static 'js/aside.js' %}"></script>

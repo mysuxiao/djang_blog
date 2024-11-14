@@ -1,0 +1,39 @@
+{% load blog_tags %}
+{% get_site_configs as SITE_CONFIGS %}
+
+<footer id="footer">
+    <div class="social-wrapper">
+        {% if SITE_CONFIGS.email %}
+        <a href="mailto:{{ SITE_CONFIGS.email }}" class="social fas fa-envelope" target="_blank" rel="external noopener noreferrer nofollow"></a>
+        {% endif %}
+
+        {% if SITE_CONFIGS.github %}
+        <a href="{{ SITE_CONFIGS.github }}" class="social fab fa-github" target="_blank" rel="external nofollow noopener noreferrer"></a>
+        {% endif %}
+
+        {% if SITE_CONFIGS.weibo %}
+        <a href="{{ SITE_CONFIGS.weibo }}" class="social fab fa-weibo" target="_blank" rel="external nofollow noopener noreferrer"></a>
+        {% endif %}
+
+        {% if SITE_CONFIGS.twitter %}
+        <a href="{{ SITE_CONFIGS.twitter }}" class="social fab fa-twitter" target="_blank" rel="external nofollow noopener noreferrer"></a>
+        {% endif %}
+
+        {% if SITE_CONFIGS.music %}
+        <a href="{{ SITE_CONFIGS.music }}" class="social fas fa-headphones-alt" target="_blank" rel="external nofollow noopener noreferrer"></a>
+        {% endif %}
+
+    </div>
+    {% if SITE_CONFIGS.beian %}
+    <p><a href="http://www.miitbeian.gov.cn/" rel="external nofollow" target="_blank">{{ SITE_CONFIGS.beian }}</a></p>
+    {% endif %}
+
+</footer>
+
+<script>var NowYear = document.getElementById("NowYear");NowYear.innerHTML = new Date().getFullYear();</script>
+
+<!-- 百度统计代码 -->
+{% if SITE_CONFIGS.baidu_tj %}
+{{ SITE_CONFIGS.baidu_tj | safe }}
+{% endif %}
+

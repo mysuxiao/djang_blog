@@ -1,0 +1,74 @@
+{% load static %}
+{% load blog_tags %}
+{% get_site_configs as SITE_CONFIGS %}
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{% block title %}{{ SITE_CONFIGS.sitename }}{% endblock %}</title>
+
+    <link rel="icon" type="image/ico" href="{% static 'images/4dp8xm.jpg' %}">
+
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="msapplication-TileColor" content="#f24e32">
+    <meta name="theme-color" content="#FFFFFF">
+
+    <link rel="stylesheet" href="{% static 'css/waves.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <!-- 代码高亮插件 -->
+    <script src="{% static 'ckeditor/ckeditor/plugins/prism/lib/prism/prism_patched.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'highlight/prism.css' %}">
+
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script>function setLoadingBarProgress(e){document.getElementById("loading-bar").style.width=e+"%"}</script>
+
+</head>
+
+<body style="height: 100%;">
+    <!-- header -->
+    {% include 'blog/header.html'%}
+
+    <script>setLoadingBarProgress(40)</script>
+
+    <div class="l_body">
+        <div class="container clearfix">
+            {% block l_main %}{% endblock %}
+
+            {% include 'blog/aside.html' %}
+
+            <script>setLoadingBarProgress(60)</script>
+        </div>
+        <a class="s-top fas fa-arrow-up fa-fw" href="javascript:void(0)"></a>
+    </div>
+
+    <!-- footer -->
+    {% include 'blog/footer.html' %}
+
+    <script>setLoadingBarProgress(80)</script>
+
+    <script>var GOOGLE_CUSTOM_SEARCH_API_KEY="",GOOGLE_CUSTOM_SEARCH_ENGINE_ID="",ALGOLIA_API_KEY="",ALGOLIA_APP_ID="",ALGOLIA_INDEX_NAME="",AZURE_SERVICE_NAME="",AZURE_INDEX_NAME="",AZURE_QUERY_KEY="",BAIDU_API_ID="",SEARCH_SERVICE="hexo",ROOT="/blog/";ROOT.endsWith("/")||(ROOT+="/")</script>
+
+    <script async="" src="{% static 'js/scrollreveal.min.js' %}"></script>
+    <script type="text/javascript">$(function() {
+            const $reveal = $('.reveal');
+                if ($reveal.length === 0) return;
+                const sr = ScrollReveal({ distance: 0 });
+                sr.reveal('.reveal');
+          });
+    </script>
+    <script src="{% static 'js/waves.min.js' %}"></script>
+    <script type="text/javascript">$(function(){Waves.attach(".flat-btn",["waves-button"]),Waves.attach(".float-btn",["waves-button","waves-float"]),Waves.attach(".float-btn-light",["waves-button","waves-float","waves-light"]),Waves.attach(".flat-box",["waves-block"]),Waves.attach(".float-box",["waves-block","waves-float"]),Waves.attach(".waves-image"),Waves.init()})</script>
+    <script src="{% static 'js/av-min.js' %}"></script>
+    <script src="{% static 'js/volantis.min.js' %}"></script>
+    <script src="{% static 'js/app.js' %}"></script>
+    <script src="{% static 'js/search.js' %}"></script>
+    <script type="text/javascript">$("div .article-entry a").attr("target","_blank");</script>
+    <script>setLoadingBarProgress(100)</script>
+    <script>!function(o){var i=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function c(t,e){var n=new Image,o=t.getAttribute("data-original");n.onload=function(){t.src=o,e&&e()},n.src=o}function n(){for(var t=0;t<i.length;t++)e=i[t],void 0,0<=(n=e.getBoundingClientRect()).top&&0<=n.left&&n.top<=(o.innerHeight||document.documentElement.clientHeight)&&c(i[t],function(){i.splice(t,t)});var e,n;console.log("trigger")}n(),o.addEventListener("scroll",function(){var t,e;t=n,e=o,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(e)},500)})}(this);</script>
+
+</body>
+</html>

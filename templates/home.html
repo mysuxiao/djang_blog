@@ -1,0 +1,84 @@
+{% load static %}
+{% load blog_tags %}
+{% get_site_configs as SITE_CONFIGS %}
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="renderer" content="webkit">
+<meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="email=no">
+<meta name="format-detection" content="address=no">
+<meta name="format-detection" content="date=no">
+<title>拣尽寒枝不肯栖</title>
+<meta name="keywords" content="主页">
+<meta name="description" content="简单且渺小">
+<style>
+.left{width: 50%}
+.right{width: 50%}
+</style>
+<link rel="stylesheet" id="style-css" href="{% static 'css/style_1.css' %}" type="text/css" media="all">
+    <link rel="stylesheet" href="{% static 'css/index.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/all.min.css' %}">
+<script type="text/javascript" src="{% static 'js/jquery.min.js' %}" ></script>
+
+<link rel="icon" type="image/ico" href="{% static 'images/huiliyi.jpg' %}">
+</head>
+
+
+<body class="home blog">
+
+<div class="wrapper">
+		<section class="left" style="background-image: url('{% static 'images/4dp8xm.jpg' %}');">
+    </section>
+			<section class="right">
+                <div id="header">
+        <ul id="nav">
+            <li class="nav-dropdown-container more">
+                <a class="nav-link"><i class="fas fa-ellipsis-v fa-fw"></i>&nbsp;更多</a>
+                <ul class="nav-dropdown">
+                    <li><ul><li><a class="nav-link" href="/admin"><i class="fas fa-user-md fa-fw"></i>&nbsp;Admin</a></li></ul></li>
+                    <li><h4></h4></li>
+                    <li>
+                        <ul>
+
+                            <li><a class="nav-link" target="_blank" href="mailto:2213920214@tiangong.edu.cn"><i class="fas fa-envelope fa-fw"></i>&nbsp;Email</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+		<div class="index_box">
+
+	<div class="index_txt">
+         <!--img src="https://ui-avatars.com/api/?name=苏晓&rounded=true&background=87CEFA&color=fff&font-size=0.4&size=96" alt=""-->
+        <img src="{% static 'images/huiliyi.jpg' %}" width="150" height="auto"alt="">
+		<h1>苏晓</h1>
+		<a>「Sakuraのことが大好き」</a>
+		<div class="zuobiao" style="margin-top: 20px;"><i class="ico_map"></i> 天津·中国</div>
+		<div class="menu-%e8%8f%9c%e5%8d%951-container">
+			<ul id="menu-%e8%8f%9c%e5%8d%951" class="index_nav">
+                <li id="menu-item-1" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-1"><a href="/blog">个人博客</a></li>
+
+			</ul>
+
+		</div>
+	</div>
+
+</div><footer class="right_foot">
+	<div class="right_f_l">
+		<p>
+			<span>© <a href="http://beian.miit.gov.cn" target="_blank">津ICP备2024025248号</a></span>
+		</p>
+	</div>
+</footer>
+</section><!--right-->
+
+</div><!--wrapper-->
+<script type="text/javascript" src="{% static 'js/js.js' %}"></script>
+</body>

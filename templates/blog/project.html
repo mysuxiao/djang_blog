@@ -1,0 +1,52 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% load blog_tags %}
+{% get_site_configs as SITE_CONFIGS %}
+
+{% block title %}
+    {{ SITE_CONFIGS.sitename }} - 我的项目
+{% endblock %}
+
+{% block l_main %}
+<div class="l_main">
+    <!-- 正文部分 -->
+    <article id="post" class="post white-box article-type-post" itemscope="" itemprop="blogPost">
+
+        <!-- 标题 -->
+        <section class="meta">
+            <div class="meta" id="header-meta">
+                <h1 class="title">{{ post.title }}</h1>
+                <div class="new-meta-box">
+                    <div class="new-meta-item author"><a href="/blog"><i class="fas fa-user" aria-hidden="true"></i> {{ post.author }}</a></div>
+                    <div class="new-meta-item date"><a class="notlink"><i class="fas fa-clock" aria-hidden="true"></i> {{ post.created_time | date:'Y-m-d' }}</a></div>
+                    <div class="new-meta-item browse busuanzi"><a class="notlink"><i class="fas fa-eye" aria-hidden="true"></i> <span id="busuanzi_value_page_pv">{{ post.views }}</span></a></div>
+                </div>
+                <hr>
+            </div>
+        </section>
+        <!-- 正文 -->
+        <section class="article typo">
+            <div class="article-entry" itemprop="articleBody" id="article_content">{{ post.body | safe }}</div>
+
+            <section class="meta" id="footer-meta">
+                <hr>
+                <div class="new-meta-box">
+                    <div class="new-meta-item date" itemprop="dateUpdated">
+                        <a class="notlink"><i class="fas fa-pencil-alt" aria-hidden="true"></i> {{ post.modified_time | date:'Y-m-d' }}</a>
+                    </div>
+                </div>
+            </section>
+
+        </section>
+    </article>
+    <br>
+
+    <!-- 评论区 -->
+    {% include 'blog/comment.html' %}
+
+</div>
+
+
+{% endblock %}
+
+
