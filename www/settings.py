@@ -78,7 +78,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'django_blog',
         'USER':'root',
-        'PASSWORD':'040413@ZYx',
+        'PASSWORD':'***',
         'HOST':'127.0.0.1',
         'POST':3306
         # ↑手动配置MySQL数据库信息
