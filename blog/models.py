@@ -52,13 +52,32 @@ class Post(models.Model):
     is_top = models.BooleanField(default=False, verbose_name=u'顶置文章')  # 文章是否顶置，默认不顶置
     is_show = models.BooleanField(default=True, verbose_name=u'发布状态')    # 文章发布状态，默认是创建成功就发布
 
-    def get_next_field_by_created_time(self):  # 获取下一页
-        post = Post.objects.filter(~Q(pk=self.pk), is_show=True, post_type='post', created_time__gte=self.created_time).order_by('created_time').first()
-        return post
+    def get_next_field_by_created_time(self):
+        current_tag_ids = self.tags.values_list('id', flat=True)
+        if not current_tag_ids:  # 如果当前文章没有标签，返回None
+            return None
+        return Post.objects.filter(
+            ~Q(pk=self.pk),
+            is_show=True,
+            post_type='post',
+            created_time__gte=self.created_time,
+            tags__in=current_tag_ids
+        ).distinct().order_by('created_time').first()
 
     def get_previous_field_by_created_time(self):
-        post = Post.objects.filter(~Q(pk=self.pk), is_show=True, post_type='post', created_time__lte=self.created_time).order_by('-created_time').first()
-        return post
+
+        current_tag_ids = self.tags.values_list('id', flat=True)
+        if not current_tag_ids:  # 如果当前文章没有标签，返回None
+            return None
+
+        # 使用数据库查询找到具有相同标签的上一篇文章
+        return Post.objects.filter(
+            ~Q(pk=self.pk),
+            is_show=True,
+            post_type='post',
+            created_time__lte=self.created_time,
+            tags__in=current_tag_ids
+        ).distinct().order_by('-created_time').first()
 
     def __str__(self):
         return self.title
