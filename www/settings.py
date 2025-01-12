@@ -202,7 +202,7 @@ EMAIL_RECEIVE_LIST = [
 ]  # 接收邮件帐号列表(可写多个)： 有评论时候，通知哪些邮箱，可以是发件邮箱或者其他
 #
 SPARK_CONFIG = {
-    'APPID': 'e7f53119',
+    'APPID': '****',
     'API_KEY': '****',
     'API_SECRET': '****',
     'HOST': 'spark-api.xf-yun.com',
