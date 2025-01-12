@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
-
+import glob
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -20,12 +20,13 @@ SITE_CONFIGS = {
 }
 # 正式部署时使用
 # DEBUG = False
-# ALLOWED_HOSTS = ['localhost','.bgods.cn','bgods.cn']
+# ALLOWED_HOSTS = ['localhost','suxiao.tech']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'simpleui',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -78,7 +79,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'django_blog',
         'USER':'root',
-        'PASSWORD':'***',
+        'PASSWORD':'****',
         'HOST':'127.0.0.1',
         'POST':3306
         # ↑手动配置MySQL数据库信息
@@ -121,14 +122,7 @@ STATICFILES_DIRS = [
    os.path.join(BASE_DIR, "common_static"),
 ]
 # settings.py
-if DEBUG:
-    # 开发环境：直接使用源文件目录
-    STATICFILES_DIRS = [
-        os.path.join(BASE_DIR, "common_static"),
-    ]
-else:
-    # 生产环境：使用收集后的目录
-    STATIC_ROOT = os.path.join(BASE_DIR, "static")
+
 
 MEDIA_URL = '/media/'
 # 放在django项目根目录，同时也需要创建media文件夹
@@ -196,14 +190,21 @@ CKEDITOR_CONFIGS = {
 
 
 #  邮箱配置
-EMAIL_USE_SSL = True
+EMAIL_USE_SSL = False
 EMAIL_HOST = 'smtp.163.com'  # 我这里使用的是163邮箱，可以配置其他
 EMAIL_PORT = 465
-EMAIL_HOST_USER = 'bgods_blog@163.com'  # 邮箱帐号：用于发送邮件的账号
-EMAIL_HOST_PASSWORD = '******'        # 邮箱密码：用于发送邮件的账号密码
-DEFAULT_FROM_EMAIL = 'bgods_blog <bgods_blog@163.com>'   # 发件人，邮件头部显示
+EMAIL_HOST_USER = ''  # 邮箱帐号：用于发送邮件的账号
+EMAIL_HOST_PASSWORD = '*'        # 邮箱密码：用于发送邮件的账号密码
+DEFAULT_FROM_EMAIL = ''   # 发件人，邮件头部显示
 
 EMAIL_RECEIVE_LIST = [
-    'bgods@qq.com',
+    '',
 ]  # 接收邮件帐号列表(可写多个)： 有评论时候，通知哪些邮箱，可以是发件邮箱或者其他
-
+#
+SPARK_CONFIG = {
+    'APPID': 'e7f53119',
+    'API_KEY': '****',
+    'API_SECRET': '****',
+    'HOST': 'spark-api.xf-yun.com',
+    'PATH': '/v4.0/chat'
+}

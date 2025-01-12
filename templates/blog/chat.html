@@ -1,0 +1,76 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% load blog_tags %}
+{% get_site_configs as SITE_CONFIGS %}
+
+{% block title %}{{ SITE_CONFIGS.sitename }} - AI助手对话{% endblock %}
+
+{% block l_main %}
+<div class="l_main">
+    <article class="post white-box article-type-post">
+        <section class="article typo">
+            <div class="article-entry" itemprop="articleBody">
+                <div class="chat-container">
+                    <div class="chat-header">
+                        <h2>讯飞星火4.0</h2>
+                        <div class="chat-actions">
+                            <button id="clearChatButton" class="clear-chat-btn" title="清空对话历史">
+                                <i class="fas fa-trash-alt"></i> 清空对话
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="chat-messages" id="chatMessages">
+                        <div class="message assistant initial-message">
+                            <img class="avatar" src="{% static 'images/hutao.jpg' %}">
+                            <div class="message-content">
+                                喵～主人好~我是你的专属猫娘巧克力，很高兴见到你喵！
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="typing-indicator" id="typingIndicator">
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                    </div>
+
+                    <div class="input-container">
+                        <div class="input-area">
+                            <textarea id="messageInput"
+                                    placeholder="请输入您的问题... (按Enter发送，Shift+Enter换行)"
+                                    rows="3"></textarea>
+                            <button id="sendButton">
+                                <i class="fas fa-paper-plane"></i> 发送
+                            </button>
+                        </div>
+                        <div class="error-message" id="errorMessage"></div>
+                        <div class="input-tips">
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </article>
+</div>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet" href="{% static 'css/chat.css' %}">
+<script src="{% static 'js/chat.js' %}"></script>
+
+<script>
+    // 为清空按钮添加事件监听
+    document.getElementById('clearChatButton').addEventListener('click', function() {
+        clearChat();
+    });
+
+    // 在页面刷新或关闭前提醒用户
+    window.onbeforeunload = function() {
+        if (conversationHistory && conversationHistory.length > 1) {
+            return "离开页面将会丢失当前对话历史，确定要离开吗？";
+        }
+    };
+</script>
+{% endblock %}

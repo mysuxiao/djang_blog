@@ -7,17 +7,15 @@ app_name = 'blog'
 
 urlpatterns = [
     path('', BlogViews.Index().index, name='Index'),
+    path('chat/', BlogViews.chat_view, name='chat'),
+    path('send_message/', BlogViews.send_message, name='send_message'),
     path('archives/', BlogViews.Archives, name='Archives'),
     path('tutorial/', BlogViews.Tutorial, name='Tutorial'),
     path('about/', BlogViews.About, name='About'),
     path('project/', BlogViews.Project, name='Project'),
-
-
     path('tags/<tag>/', BlogViews.Index().tags, name='tags'),
     path('post/<int:pk>/', BlogViews.Detail, name='post'),
     path('content.json/',BlogViews.search, name='search'),
-
-
 
 
 ]
